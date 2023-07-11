@@ -91,6 +91,8 @@ class location(object):
         return "lat=%.6f,lon=%.6f,alt=%.1f" % (self.lat, self.lng, self.alt)
 
 def add_message(messages, mtype, msg):
+    if msg.get_type() == 'BAD_DATA':
+        return
     '''add a msg to array of messages, taking account of instance messages'''
     if msg._instance_field is None or getattr(msg, msg._instance_field, None) is None:
         # simple case, no instance field
